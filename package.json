@@ -1,0 +1,27 @@
+{
+  "name": "backend-project",
+  "version": "1.0.0",
+  "description": "Backend Restful Server Node.js & Express",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ineedatoothbrush/Backend-Restful-Server-Node.js-Express.git"
+  },
+  "keywords": [
+    "nodejs",
+    "react"
+  ],
+  "author": "DucDao",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ineedatoothbrush/Backend-Restful-Server-Node.js-Express/issues"
+  },
+  "homepage": "https://github.com/ineedatoothbrush/Backend-Restful-Server-Node.js-Express#readme",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
