@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "node src/server.js"
+    "dev": "nodemon ./src/server.js"
   },
   "repository": {
     "type": "git",
@@ -27,6 +27,6 @@
     "express": "^5.1.0"
   },
   "devDependencies": {
-    "nodemon": "3.1.10"
+    "nodemon": "^3.1.10"
   }
 }
