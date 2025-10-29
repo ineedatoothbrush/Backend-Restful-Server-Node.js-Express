@@ -1,10 +1,12 @@
 const express = require('express')
 const app = express()
-const port = 8080
 const path = require('path');
-
+require('dotenv').config();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs')
+
+const port = process.env.PORT || 8081
+const hostname = process.env.HOST_NAME
 
 app.get('/', (req, res) => {
     res.send('Hello World!')
@@ -19,6 +21,6 @@ app.get('/DucDao', (req, res) => {
 })
 
 
-app.listen(port, () => {
+app.listen(port, hostname, () => {
     console.log(`Example app listening on port ${port}`)
 })

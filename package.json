@@ -22,7 +22,11 @@
   },
   "homepage": "https://github.com/ineedatoothbrush/Backend-Restful-Server-Node.js-Express#readme",
   "dependencies": {
+    "dotenv": "^17.2.3",
     "ejs": "^3.1.10",
     "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "3.1.10"
   }
 }
