@@ -20,22 +20,35 @@
             <thead>
                 <tr>
                     <th>Email</th>
-                    <th>Họ và Tên</th>
-                    <th>Thành phố</th>
+                    <th>Name</th>
+                    <th>City</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>example1@gmail.com</td>
-                    <td>Nguyễn Văn A</td>
-                    <td>Hà Nội</td>
-                </tr>
-                <tr>
-                    <td>example2@gmail.com</td>
-                    <td>Trần Thị B</td>
-                    <td>Đà Nẵng</td>
-                </tr>
-
+                <% if (typeof users !=='undefined' && users.length> 0) { %>
+                    <% users.forEach(user=> { %>
+                        <tr>
+                            <td>
+                                <%= user.email %>
+                            </td>
+                            <td>
+                                <%= user.name %>
+                            </td>
+                            <td>
+                                <%= user.city %>
+                            </td>
+                            <td>
+                                <button class="submit-btn2">submit</button>
+                                <button class="submit-btn3">cancer</button>
+                            </td>
+                        </tr>
+                        <% }) %>
+                            <% } else { %>
+                                <tr>
+                                    <td colspan="4" style="text-align: center;">Chưa có dữ liệu người dùng.</td>
+                                </tr>
+                                <% } %>
             </tbody>
         </table>
     </div>

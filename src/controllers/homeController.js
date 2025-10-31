@@ -1,9 +1,11 @@
 const connection = require('../config/database')
-
+const { getAllUsers } = require('../services/CRUDService')
 let users = [];
 
-const getHomePage = (req, res) => {
-    return res.render('home.ejs')
+const getHomePage = async (req, res) => {
+    let result = await getAllUsers();
+    console.log(">>> check row:", result)
+    return res.render('home.ejs', { users: result })
 }
 const getDaominhduc = (req, res) => {
     res.render('sample.ejs')
@@ -20,7 +22,7 @@ const postNewUser = async (req, res) => {
     let [result, fields] = await connection.query(
         'INSERT INTO Users (email, name, city) VALUES (?, ?, ?)', [email, myname, city]
     );
-    res.send('User added successfully');
+    res.redirect('/');
 }
 module.exports = {
     getHomePage,
