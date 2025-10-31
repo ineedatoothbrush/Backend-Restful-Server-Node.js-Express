@@ -99,3 +99,55 @@
 .submit-btn:hover {
     background-color: #0056b3;
 }
+
+/* --- CSS CHO BẢNG USER --- */
+
+/* Khung chứa bảng, tương tự như form */
+.table-container {
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 800px;
+    /* Bảng có thể rộng hơn form */
+    margin: 2rem auto;
+    /* Căn giữa và tạo khoảng cách */
+    overflow-x: auto;
+    /* Giúp bảng responsive trên di động */
+}
+
+/* Tiêu đề của bảng */
+.table-container h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 1.5rem;
+}
+
+/* Kiểu dáng cho bảng */
+.user-table {
+    width: 1000px;
+    border-collapse: collapse;
+    /* Gộp các đường viền lại */
+}
+
+/* Kiểu dáng cho các ô (th, td) */
+.user-table th,
+.user-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+/* Kiểu dáng cho hàng tiêu đề (thead) */
+.user-table th {
+    background-color: #f2f2f2;
+    /* Màu nền xám nhạt */
+    color: #333;
+    font-weight: bold;
+}
+
+/* Kiểu dáng cho các hàng trong tbody khi rê chuột */
+.user-table tbody tr:hover {
+    background-color: #f5f5f5;
+}
