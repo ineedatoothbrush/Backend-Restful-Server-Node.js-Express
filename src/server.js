@@ -7,7 +7,7 @@ const configViewEngine = require('./config/viewEngine');
 const webRoute = require('./routes/web');
 
 configViewEngine(app);
-app.use('/test', webRoute);
+app.use('/', webRoute);
 
 app.listen(port, hostname, () => {
     console.log(`Example app listening on port ${port}`)
