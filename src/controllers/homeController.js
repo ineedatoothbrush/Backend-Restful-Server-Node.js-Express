@@ -24,10 +24,14 @@ const postNewUser = async (req, res) => {
     );
     res.redirect('/');
 }
+const getUpdatePage = (req, res) => {
+    res.render('update.ejs');
+}
 module.exports = {
     getHomePage,
     getDaominhduc,
     getDucDao,
     postNewUser,
-    getNewUser
+    getNewUser,
+    getUpdatePage
 };

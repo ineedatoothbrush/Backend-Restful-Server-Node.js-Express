@@ -6,6 +6,9 @@ const getAllUsers = async () => {
     );
     return result;
 }
+const getUserbyId = async () => {
+
+}
 module.exports = {
     getAllUsers
 };

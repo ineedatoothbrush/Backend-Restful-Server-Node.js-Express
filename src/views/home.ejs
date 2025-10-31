@@ -11,8 +11,6 @@
     <div class="topnav">
         <a class="active" href="/">Home</a>
         <a href="/CreateUser">Create User</a>
-        <a href="#contact">Contact</a>
-        <a href="#about">About</a>
     </div>
     <div style="display: grid; justify-content: center;">
         <h2 style="text-align: center; padding-top: 30px;">Danh sách User</h2>
@@ -43,8 +41,8 @@
                                 <%= user.city %>
                             </td>
                             <td>
-                                <button class="submit-btn2">submit</button>
-                                <button class="submit-btn3">cancer</button>
+                                <a href="/update"><button class="submit-btn2">Edit</button></a>
+                                <a href=""><button class="submit-btn3">cancer</button></a>
                             </td>
                         </tr>
                         <% }) %>
