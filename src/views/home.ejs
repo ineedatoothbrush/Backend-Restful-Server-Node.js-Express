@@ -19,6 +19,7 @@
         <table class="user-table">
             <thead>
                 <tr>
+                    <th>ID</th>
                     <th>Email</th>
                     <th>Name</th>
                     <th>City</th>
@@ -29,6 +30,9 @@
                 <% if (typeof users !=='undefined' && users.length> 0) { %>
                     <% users.forEach(user=> { %>
                         <tr>
+                            <td>
+                                <%= user.id %>
+                            </td>
                             <td>
                                 <%= user.email %>
                             </td>
