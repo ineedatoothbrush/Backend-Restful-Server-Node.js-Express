@@ -15,23 +15,23 @@
         <a href="#about">About</a>
     </div>
     <div class="form-container">
-        <h2>Thông tin User</h2>
+        <h2>Add New User</h2>
 
-        <form id="userForm" action="#" method="POST">
+        <form action="/create-user" method="POST">
 
             <div class="form-group">
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="user_email" required>
+                <input type="email" id="email" name="email" required>
             </div>
 
             <div class="form-group">
                 <label for="name">Họ và Tên:</label>
-                <input type="text" id="name" name="user_name" required>
+                <input type="text" id="name" name="myname" required>
             </div>
 
             <div class="form-group">
                 <label for="city">Thành phố:</label>
-                <input type="text" id="city" name="user_city">
+                <input type="text" id="city" name="city">
             </div>
 
             <button type="submit" class="submit-btn">Gửi thông tin</button>

@@ -7,10 +7,12 @@ const configViewEngine = require('./config/viewEngine');
 const webRoute = require('./routes/web');
 const connection = require('./config/database');
 
+app.use(express.json()); // Used to parse JSON bodies 
+app.use(express.urlencoded()); //Parse URL-encoded bodies
+
 configViewEngine(app);
 app.use('/', webRoute);
 
-//test connection
 
 app.listen(port, hostname, () => {
     console.log(`Example app listening on port ${port}`)
