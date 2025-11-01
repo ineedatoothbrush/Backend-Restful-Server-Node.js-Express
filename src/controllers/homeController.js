@@ -29,11 +29,18 @@ const getUpdatePage = async (req, res) => {
     }
 }
 const postUpdatePage = async (req, res) => {
-    const { email, myname, city } = req.body;
-    let [result, fields] = await connection.query(
-        'INSERT INTO Users (email, name, city) VALUES (?, ?, ?)', [email, myname, city]
-    );
-    res.redirect('/');
+    try {
+        const { id } = req.params;
+        const { email, myname, city } = req.body;
+        const sql = 'UPDATE Users SET email = ?, name = ?, city = ? WHERE id = ?';
+        const params = [email, myname, city, id];
+        await connection.execute(sql, params);
+        res.redirect('/');
+    } catch (error) {
+        // Luôn xử lý lỗi
+        console.error("Lỗi khi cập nhật user:", error);
+        res.status(500).send('Lỗi máy chủ');
+    }
 }
 module.exports = {
     getHomePage,
