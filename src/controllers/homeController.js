@@ -20,7 +20,6 @@ const getUpdatePage = async (req, res) => {
     const userId = req.params.id;
     const currentUser = await getUserbyId(userId)
     if (currentUser) {
-        console.log(">>>>>>", currentUser);
         res.render('update.ejs', { user: currentUser });
     } else {
         // Xử lý trường hợp không tìm thấy user với ID đó
