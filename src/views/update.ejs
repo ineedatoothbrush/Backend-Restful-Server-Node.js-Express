@@ -15,24 +15,28 @@
     <div class="form-container">
         <h2>Update User</h2>
 
-        <form action="/create-user" method="POST">
+        <form action="/udpate-user/<%= user.id %>" method="POST">
 
+            <div class="form-group" style="display: none;">
+                <label for="id">id</label>
+                <input type="email" value="<%= user.id %>" id="id" name="id" required disabled>
+            </div>
             <div class="form-group">
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
+                <input type="email" value="<%= user.email %>" id="email" name="email" required>
             </div>
 
             <div class="form-group">
                 <label for="name">Họ và Tên:</label>
-                <input type="text" id="name" name="myname" required>
+                <input type="text" value="<%= user.name %>" id="name" name="myname" required>
             </div>
 
             <div class="form-group">
                 <label for="city">Thành phố:</label>
-                <input type="text" id="city" name="city">
+                <input type="text" value="<%= user.city %>" id="city" name="city">
             </div>
 
-            <button type="submit" class="submit-btn">Gửi thông tin</button>
+            <button type="submit" class="submit-btn">Cập nhật người dùng</button>
 
         </form>
     </div>

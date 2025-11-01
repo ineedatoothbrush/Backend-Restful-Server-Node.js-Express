@@ -1,37 +1,44 @@
 const connection = require('../config/database')
-const { getAllUsers } = require('../services/CRUDService')
+const { getAllUsers, getUserbyId } = require('../services/CRUDService')
 let users = [];
 
 const getHomePage = async (req, res) => {
     let result = await getAllUsers();
-    console.log(">>> check row:", result)
     return res.render('home.ejs', { users: result })
-}
-const getDaominhduc = (req, res) => {
-    res.render('sample.ejs')
-}
-const getDucDao = (req, res) => {
-    res.send('<h1>Duc Dao</h1>')
 }
 const getNewUser = (req, res) => {
     res.render('CreateUser.ejs')
 }
 const postNewUser = async (req, res) => {
-
     const { email, myname, city } = req.body;
     let [result, fields] = await connection.query(
         'INSERT INTO Users (email, name, city) VALUES (?, ?, ?)', [email, myname, city]
     );
     res.redirect('/');
 }
-const getUpdatePage = (req, res) => {
-    res.render('update.ejs');
+const getUpdatePage = async (req, res) => {
+    const userId = req.params.id;
+    const currentUser = await getUserbyId(userId)
+    if (currentUser) {
+        console.log(">>>>>>", currentUser);
+        res.render('update.ejs', { user: currentUser });
+    } else {
+        // Xử lý trường hợp không tìm thấy user với ID đó
+        console.log("Không tìm thấy user với ID:", userId);
+        res.status(404).send('User not found');
+    }
+}
+const postUpdatePage = async (req, res) => {
+    const { email, myname, city } = req.body;
+    let [result, fields] = await connection.query(
+        'INSERT INTO Users (email, name, city) VALUES (?, ?, ?)', [email, myname, city]
+    );
+    res.redirect('/');
 }
 module.exports = {
     getHomePage,
-    getDaominhduc,
-    getDucDao,
     postNewUser,
     getNewUser,
-    getUpdatePage
+    getUpdatePage,
+    postUpdatePage
 };
