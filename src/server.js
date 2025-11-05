@@ -7,6 +7,7 @@ const configViewEngine = require('./config/viewEngine');
 const webRoute = require('./routes/web');
 const connection = require('./config/database');
 const mongoose = require("mongoose");
+const Kitten = require('./models/Kitten')
 
 app.use(express.json()); // Used to parse JSON bodies 
 app.use(express.urlencoded()); //Parse URL-encoded bodies
@@ -14,10 +15,6 @@ app.use(express.urlencoded()); //Parse URL-encoded bodies
 configViewEngine(app);
 app.use('/', webRoute);
 
-const kittySchema = new mongoose.Schema({
-    name: String
-})
-const Kitten = mongoose.model("Kitten", kittySchema);
 const cat = new Kitten({ name: 'Dao Minh Duc' });
 cat.save();
 
