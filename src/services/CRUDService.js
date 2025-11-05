@@ -15,5 +15,5 @@ const getUserbyId = async (id) => {
 }
 module.exports = {
     getAllUsers,
-    getUserbyId
-};
+    getUserbyId,
+}
