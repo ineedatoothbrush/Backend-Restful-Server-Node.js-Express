@@ -30,8 +30,23 @@ const putUserApi = async (req, res) => {
     }
 }
 
+const deleteUserApi = async (req, res) => {
+    try {
+        const { id } = req.params;
+        let user = await User.deleteOne({ _id: id });
+        return res.status(200).json({
+            data: user
+        });
+    } catch (error) {
+        // Luôn xử lý lỗi
+        console.error("Lỗi khi cập nhật user:", error);
+        res.status(500).send('Lỗi máy chủ');
+    }
+}
+
 module.exports = {
     getUsersApi,
     postNewUserApi,
-    putUserApi
+    putUserApi,
+    deleteUserApi
 }
