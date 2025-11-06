@@ -3,7 +3,7 @@ const { getAllUsers, getUserbyId } = require('../services/CRUDService')
 const User = require('../models/user')
 
 const getHomePage = async (req, res) => {
-    let result = [];
+    let result = await User.find({});
     return res.render('home.ejs', { users: result })
 }
 const getNewUser = (req, res) => {
@@ -19,7 +19,7 @@ const postNewUser = async (req, res) => {
 }
 const getUpdatePage = async (req, res) => {
     const userId = req.params.id;
-    const currentUser = await getUserbyId(userId)
+    const currentUser = await User.findOne({ _id: userId })
     if (currentUser) {
         res.render('update.ejs', { user: currentUser });
     } else {
@@ -32,9 +32,7 @@ const postUpdatePage = async (req, res) => {
     try {
         const { id } = req.params;
         const { email, myname, city } = req.body;
-        const sql = 'UPDATE Users SET email = ?, name = ?, city = ? WHERE id = ?';
-        const params = [email, myname, city, id];
-        await connection.execute(sql, params);
+        await User.updateOne({ _id: id }, { email, name: myname, city })
         res.redirect('/');
     } catch (error) {
         // Luôn xử lý lỗi
@@ -45,7 +43,7 @@ const postUpdatePage = async (req, res) => {
 
 const getDeletePage = async (req, res) => {
     const userId = req.params.id;
-    const currentUser = await getUserbyId(userId)
+    const currentUser = await User.findOne({ _id: userId })
     if (currentUser) {
         res.render('confirmDelete.ejs', { user: currentUser });
     } else {
@@ -58,7 +56,7 @@ const getDeletePage = async (req, res) => {
 const postDeletePage = async (req, res) => {
     try {
         const { id } = req.params;
-        await connection.execute('DELETE from Users WHERE id = ?', [id]);
+        await User.deleteOne({ _id: id });
         res.redirect('/');
     } catch (error) {
         // Luôn xử lý lỗi
