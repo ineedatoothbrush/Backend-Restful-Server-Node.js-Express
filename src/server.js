@@ -10,7 +10,7 @@ const connection = require('./config/database');
 const mongoose = require("mongoose");
 
 app.use(express.json()); // Used to parse JSON bodies 
-app.use(express.urlencoded()); //Parse URL-encoded bodies
+app.use(express.urlencoded({ extended: true }));
 configViewEngine(app);
 app.use('/', webRoute);
 app.use('/v1/api/', webRouteAPI);
