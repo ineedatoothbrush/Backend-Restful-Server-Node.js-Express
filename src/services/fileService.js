@@ -1,15 +1,11 @@
 const path = require('path');
 
-const UploadSingleFile = async (FileObject, res) => {
+const UploadSingleFile = async (FileObject) => {
     uploadPath = path.resolve(__dirname, "../public/images") + "/" + Date.now() + "-" + FileObject.name;
 
     // Use the mv() method to place the file somewhere on your server
-    FileObject.mv(uploadPath, function (err) {
-        if (err)
-            return res.status(500).send(err);
-
-        res.send('File uploaded! ---');
-    });
+    await FileObject.mv(uploadPath);
+    return uploadPath;
 }
 
 const UploadMultipleFiles = async (FileObject, res) => {
