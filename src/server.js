@@ -7,7 +7,10 @@ const configViewEngine = require('./config/viewEngine');
 const webRoute = require('./routes/web');
 const webRouteAPI = require('./routes/api');
 const connection = require('./config/database');
-const mongoose = require("mongoose");
+const fileUpload = require('express-fileupload');
+
+// default options
+app.use(fileUpload());
 
 app.use(express.json()); // Used to parse JSON bodies 
 app.use(express.urlencoded({ extended: true }));
