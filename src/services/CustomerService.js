@@ -23,7 +23,18 @@ const CreateManyCustomer = async (data) => {
     }
 }
 
+const DeleteManyCustomer = async (ids) => {
+    try {
+        let result = await Customer.delete({ _id: { $in: ids } });
+        return result;
+    } catch (error) {
+        throw error;
+    }
+}
+
+
 module.exports = {
     CreateCustomer,
-    CreateManyCustomer
+    CreateManyCustomer,
+    DeleteManyCustomer
 }

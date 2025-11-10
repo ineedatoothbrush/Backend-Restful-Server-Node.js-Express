@@ -1,5 +1,5 @@
 const { UploadSingleFile } = require('../services/fileService');
-const { CreateCustomer, CreateManyCustomer } = require('../services/CustomerService');
+const { CreateCustomer, CreateManyCustomer, DeleteManyCustomer } = require('../services/CustomerService');
 const Customer = require('../models/Customer');
 
 module.exports = {
@@ -33,7 +33,6 @@ module.exports = {
     },
     postManyCustomerApi: async (req, res) => {
         let customer = await CreateManyCustomer(req.body.customer);
-
         return res.status(200).json({
             data: customer
         });
@@ -56,6 +55,33 @@ module.exports = {
             });
         } catch (error) {
             console.error("Lỗi khi cập nhật customer:", error);
+            res.status(500).send('Lỗi máy chủ');
+        }
+    },
+    deleteCustomerApi: async (req, res) => {
+        try {
+            const userId = req.body.id;
+            console.log(">>>>>> ID customer cần xóa:", userId);
+            let customer = await Customer.deleteOne({ _id: userId });
+            return res.status(200).json({
+                message: "Xóa customer thành công",
+                data: customer
+            });
+        } catch (error) {
+            console.error("Lỗi khi xóa customer:", error);
+            res.status(500).send('Lỗi máy chủ');
+        }
+    },
+    deleteManyCustomerApi: async (req, res) => {
+        try {
+            let customer = await DeleteManyCustomer(req.body.ids);
+            console.log(">>>>>> Kết quả xóa nhiều customer:", customer);
+            return res.status(200).json({
+                message: "Xóa nhiều customer thành công",
+                data: customer
+            });
+        } catch (error) {
+            console.error("Lỗi khi xóa nhiều customer:", error);
             res.status(500).send('Lỗi máy chủ');
         }
     }
