@@ -1,5 +1,6 @@
 const { UploadSingleFile } = require('../services/fileService');
-const { CreateCustomer } = require('../services/CustomerService');
+const { CreateCustomer, CreateManyCustomer } = require('../services/CustomerService');
+const Customer = require('../models/Customer');
 
 module.exports = {
     postNewCustomerApi: async (req, res) => {
@@ -29,5 +30,33 @@ module.exports = {
         return res.status(200).json({
             data: customer
         });
+    },
+    postManyCustomerApi: async (req, res) => {
+        let customer = await CreateManyCustomer(req.body.customer);
+
+        return res.status(200).json({
+            data: customer
+        });
+    },
+    getCustomersApi: async (req, res) => {
+        let result = await Customer.find({});
+        return res.status(200).json({
+            EC: 0,
+            users: result
+        });
+    },
+    putCustomerApi: async (req, res) => {
+        try {
+            const { userId } = req.params;
+            const { name, address, phone, email, description } = req.body;
+            let customer = await Customer.updateOne({ _id: userId }, { name, address, phone, email, description });
+            return res.status(200).json({
+                message: "Cập nhật customer thành công",
+                data: customer
+            });
+        } catch (error) {
+            console.error("Lỗi khi cập nhật customer:", error);
+            res.status(500).send('Lỗi máy chủ');
+        }
     }
 };

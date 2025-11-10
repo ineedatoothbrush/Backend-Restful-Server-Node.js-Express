@@ -14,7 +14,16 @@ const CreateCustomer = async (data) => {
         throw error;
     }
 }
+const CreateManyCustomer = async (data) => {
+    try {
+        let customer = await Customer.insertMany(data);
+        return customer;
+    } catch (error) {
+        throw error;
+    }
+}
 
 module.exports = {
-    CreateCustomer
+    CreateCustomer,
+    CreateManyCustomer
 }
