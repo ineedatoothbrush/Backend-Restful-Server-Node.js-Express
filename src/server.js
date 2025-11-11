@@ -21,7 +21,7 @@ app.use('/v1/api/', webRouteAPI);
 ; (async () => {
     try {
         await connection();
-        app.listen(port, hostname, () => {
+        app.listen(port, '0.0.0.0', () => {
             console.log(`Backend app listening on port ${port}`)
         })
     } catch (error) {
