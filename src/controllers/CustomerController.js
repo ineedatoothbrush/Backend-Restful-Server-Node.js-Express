@@ -2,6 +2,7 @@ const { UploadSingleFile } = require('../services/fileService');
 const { CreateCustomer, CreateManyCustomer, DeleteManyCustomer, GetAllCustomer } = require('../services/CustomerService');
 const Customer = require('../models/Customer');
 
+
 module.exports = {
     postNewCustomerApi: async (req, res) => {
 
@@ -38,19 +39,16 @@ module.exports = {
         });
     },
     getCustomersApi: async (req, res) => {
-        console.log(req.query);
-        let { limit, page, name } = req.query;
-        let result = null;
-        if (limit && page && name) {
-            result = await GetAllCustomer(limit, page, name);
-        } else {
-            result = await GetAllCustomer();
+        try {
+            let result = await GetAllCustomer(req.query);
+            return res.status(200).json({
+                EC: 0,
+                data: result
+            });
+        } catch (error) {
+            console.error("Lỗi khi lấy danh sách customers:", error);
+            res.status(500).send('Lỗi máy chủ');
         }
-
-        return res.status(200).json({
-            EC: 0,
-            users: result
-        });
     },
     putCustomerApi: async (req, res) => {
         try {
