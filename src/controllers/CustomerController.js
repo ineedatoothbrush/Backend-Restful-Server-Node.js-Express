@@ -39,10 +39,10 @@ module.exports = {
     },
     getCustomersApi: async (req, res) => {
         console.log(req.query);
-        let { limit, page } = req.query;
+        let { limit, page, name } = req.query;
         let result = null;
-        if (limit && page) {
-            result = await GetAllCustomer(limit, page);
+        if (limit && page && name) {
+            result = await GetAllCustomer(limit, page, name);
         } else {
             result = await GetAllCustomer();
         }

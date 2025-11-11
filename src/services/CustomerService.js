@@ -32,13 +32,13 @@ const DeleteManyCustomer = async (ids) => {
     }
 }
 
-const GetAllCustomer = async (limit, page) => {
+const GetAllCustomer = async (limit, page, name) => {
     try {
         let result = null;
         const query = { deleted: { $ne: true } };
-        if (limit && page) {
+        if (limit && page && name) {
             let offset = (page - 1) * limit;
-            result = await Customer.find(query).limit(limit).skip(offset);
+            result = await Customer.find({ "name": { $regex: '.*' + name + '.*' } }).limit(limit).skip(offset);
         } else {
             result = await Customer.find(query);
         }
