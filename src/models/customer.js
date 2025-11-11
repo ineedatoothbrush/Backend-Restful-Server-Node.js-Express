@@ -16,6 +16,6 @@ const customerSchema = new mongoose.Schema({
 }
 )
 customerSchema.plugin(mongoose_delete, { deletedAt: true });
-const customer = mongoose.model('customer', customerSchema);
+const Customer = mongoose.model('customer', customerSchema);
 
-module.exports = customer;
+module.exports = Customer;
