@@ -1,6 +1,6 @@
 const { UploadSingleFile } = require('../services/fileService');
 const { CreateCustomer, CreateManyCustomer, DeleteManyCustomer, GetAllCustomer } = require('../services/CustomerService');
-const Customer = require('../models/Customer');
+const Customer = require('../models/customer');
 
 
 module.exports = {
