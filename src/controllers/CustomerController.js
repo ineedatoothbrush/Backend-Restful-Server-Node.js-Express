@@ -1,5 +1,5 @@
 const { UploadSingleFile } = require('../services/fileService');
-const { CreateCustomer, CreateManyCustomer, DeleteManyCustomer } = require('../services/CustomerService');
+const { CreateCustomer, CreateManyCustomer, DeleteManyCustomer, GetAllCustomer } = require('../services/CustomerService');
 const Customer = require('../models/Customer');
 
 module.exports = {
@@ -38,7 +38,15 @@ module.exports = {
         });
     },
     getCustomersApi: async (req, res) => {
-        let result = await Customer.find({});
+        console.log(req.query);
+        let { limit, page } = req.query;
+        let result = null;
+        if (limit && page) {
+            result = await GetAllCustomer(limit, page);
+        } else {
+            result = await GetAllCustomer();
+        }
+
         return res.status(200).json({
             EC: 0,
             users: result
