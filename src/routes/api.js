@@ -20,7 +20,7 @@ const {
 
 routerAPI.get('/users', getUsersApi);
 routerAPI.post('/users', postNewUserApi);
-routerAPI.put('/users/:userId', putUserApi);
+routerAPI.put('/users', putUserApi);
 routerAPI.delete('/users/:id', deleteUserApi);
 
 routerAPI.post('/file', postUploadFileApi);

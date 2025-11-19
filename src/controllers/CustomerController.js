@@ -8,21 +8,22 @@ module.exports = {
 
         let { name, address, phone, email, image, description } = req.body;
 
-        let imageURL = '';
-        if (!req.files || Object.keys(req.files).length === 0) {
-            return res.status(400).send('No files were uploaded.');
-        } else {
-            let result = await UploadSingleFile(req.files.image);
-            imageURL = result;
-            console.log(">>>>>> Uploaded image path:", imageURL);
-        }
+        // let imageURL = '';
+        // if (!req.files || Object.keys(req.files).length === 0) {
+        //     return res.status(400).send('No files were uploaded.');
+        // } else {
+        //     let result = await UploadSingleFile(req.files.image);
+        //     imageURL = result;
+        //     console.log(">>>>>> Uploaded image path:", imageURL);
+        // }
 
         let data = {
             name,
             address,
             phone,
             email,
-            image: imageURL,
+            // image: imageURL,
+            image,
             description
         };
 

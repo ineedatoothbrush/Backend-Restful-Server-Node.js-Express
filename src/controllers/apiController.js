@@ -18,8 +18,7 @@ const postNewUserApi = async (req, res) => {
 
 const putUserApi = async (req, res) => {
     try {
-        const { userId } = req.params;
-        const { email, name, city } = req.body;
+        const { userId, email, name, city } = req.body;
         let user = await User.updateOne({ _id: userId }, { email, name, city })
         return res.status(200).json({
             data: user
